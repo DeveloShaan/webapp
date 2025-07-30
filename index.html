@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Telegram Style Login</title>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        :root {
+            --tg-theme-bg-color: #ffffff;
+            --tg-theme-text-color: #000000;
+            --tg-theme-link-color: #0088cc;
+            --tg-theme-button-color: #0088cc;
+            --tg-theme-button-text-color: #ffffff;
+        }
+
+        body {
+            background-color: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            margin-bottom: 30px;
+            color: gray;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--tg-theme-button-color);
+            color: var(--tg-theme-button-text-color);
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: #006cae;
+        }
+
+        .qr-link {
+            color: var(--tg-theme-link-color);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sticker-container">
+            <lottie-player src="duck.json" background="transparent" speed="1" style="width: 120px; height: 120px;" loop
+                autoplay></lottie-player>
+        </div>
+
+
+        <div class="title">BBU Login</div>
+        <div class="subtitle">Login with your email and password</div>
+
+        <input type="email" placeholder="Your email" required />
+        <input type="password" placeholder="Password" required />
+        <button class="login-button">Login</button>
+
+        <a href="#" class="qr-link">Log in by QR code</a>
+    </div>
+
+    <script>
+        if (window.Telegram && Telegram.WebApp && Telegram.WebApp.themeParams) {
+            const theme = Telegram.WebApp.themeParams;
+            document.documentElement.style.setProperty('--tg-theme-bg-color', theme.bg_color || '#ffffff');
+            document.documentElement.style.setProperty('--tg-theme-text-color', theme.text_color || '#000000');
+            document.documentElement.style.setProperty('--tg-theme-link-color', theme.link_color || '#0088cc');
+            document.documentElement.style.setProperty('--tg-theme-button-color', theme.button_color || '#0088cc');
+            document.documentElement.style.setProperty('--tg-theme-button-text-color', theme.button_text_color || '#ffffff');
+        }
+    </script>
+</body>
+
+</html>
