@@ -2,135 +2,209 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Telegram Style Login</title>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <style>
-        :root {
-            --tg-theme-bg-color: #ffffff;
-            --tg-theme-text-color: #000000;
-            --tg-theme-link-color: #0088cc;
-            --tg-theme-button-color: #0088cc;
-            --tg-theme-button-text-color: #ffffff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telegram Style Login</title>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    :root {
+      --tg-theme-bg-color: #ffffff;
+      --tg-theme-text-color: #000000;
+      --tg-theme-link-color: #0088cc;
+      --tg-theme-button-color: #0088cc;
+      --tg-theme-button-text-color: #ffffff;
+    }
 
-        body {
-            background-color: var(--tg-theme-bg-color);
-            color: var(--tg-theme-text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
+    body {
+      background-color: var(--tg-theme-bg-color);
+      color: var(--tg-theme-text-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
 
-        .container {
-            max-width: 400px;
-            width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #0088cc;
+      padding: 10px 20px;
+      color: white;
+    }
 
-        .logo {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 20px;
-        }
+    .header-logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-        }
+    .profile-menu {
+      position: relative;
+    }
 
-        .subtitle {
-            font-size: 14px;
-            margin-bottom: 30px;
-            color: gray;
-        }
+    .profile-icon {
+      background-color: white;
+      color: #0088cc;
+      border-radius: 50%;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+    }
 
-        .sticker-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
+    .dropdown a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #000;
+      font-size: 14px;
+      line-height: 1.2;
+    }
 
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
 
-        .login-button {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--tg-theme-button-color);
-            color: var(--tg-theme-button-text-color);
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .login-button:hover {
-            background-color: #006cae;
-        }
+    .sticker-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
 
-        .qr-link {
-            color: var(--tg-theme-link-color);
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-    </style>
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      margin-bottom: 30px;
+      color: gray;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--tg-theme-button-color);
+      color: var(--tg-theme-button-text-color);
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .login-button:hover {
+      background-color: #006cae;
+    }
+
+    .register-link,
+    .forgot-link {
+      color: var(--tg-theme-link-color);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="sticker-container">
-            <lottie-player src="https://raw.githubusercontent.com/DeveloShaan/webapp/main/duck.json"
-                background="transparent" speed="1" style="width: 120px; height: 120px;" loop autoplay>
-            </lottie-player>
+  <header>
+    <div class="header-logo">BBU</div>
+    <div class="profile-menu">
+      <div class="profile-icon" onclick="toggleDropdown()">☰</div>
+      <div class="dropdown" id="dropdown">
+        <a href="#">Login</a>
+        <a href="#">Sign</a>
+        <a href="#">Up</a>
+      </div>
+    </div>
+  </header>
 
-        </div>
-
-        <div class="title">BBU Login</div>
-        <div class="subtitle">Login with your email and password</div>
-
-        <input type="email" placeholder="Your email" required />
-        <input type="password" placeholder="Password" required />
-        <button class="login-button">Login</button>
-
-        <a href="#" class="qr-link">Log in by QR code</a>
+  <div class="container">
+    <div class="sticker-container">
+      <lottie-player src="https://raw.githubusercontent.com/DeveloShaan/webapp/main/duck.json" background="transparent"
+        speed="1" style="width: 120px; height: 120px;" loop autoplay>
+      </lottie-player>
     </div>
 
-    <script>
-        if (window.Telegram && Telegram.WebApp && Telegram.WebApp.themeParams) {
-            const theme = Telegram.WebApp.themeParams;
-            document.documentElement.style.setProperty('--tg-theme-bg-color', theme.bg_color || '#ffffff');
-            document.documentElement.style.setProperty('--tg-theme-text-color', theme.text_color || '#000000');
-            document.documentElement.style.setProperty('--tg-theme-link-color', theme.link_color || '#0088cc');
-            document.documentElement.style.setProperty('--tg-theme-button-color', theme.button_color || '#0088cc');
-            document.documentElement.style.setProperty('--tg-theme-button-text-color', theme.button_text_color || '#ffffff');
-        }
-    </script>
+    <div class="title">Login</div>
+    <div class="subtitle">Access your BBU account</div>
+
+    <input type="email" placeholder="Your email" required />
+    <input type="password" placeholder="Password" required />
+
+    <!-- Forgot password below password -->
+    <a href="#" class="forgot-link">Forgot password?</a>
+
+    <button class="login-button">Login</button>
+
+    <a href="#" class="register-link">Create an account</a>
+  </div>
+
+  <script>
+    if (window.Telegram && Telegram.WebApp && Telegram.WebApp.themeParams) {
+      const theme = Telegram.WebApp.themeParams;
+      document.documentElement.style.setProperty('--tg-theme-bg-color', theme.bg_color || '#ffffff');
+      document.documentElement.style.setProperty('--tg-theme-text-color', theme.text_color || '#000000');
+      document.documentElement.style.setProperty('--tg-theme-link-color', theme.link_color || '#0088cc');
+      document.documentElement.style.setProperty('--tg-theme-button-color', theme.button_color || '#0088cc');
+      document.documentElement.style.setProperty('--tg-theme-button-text-color', theme.button_text_color || '#ffffff');
+    }
+
+    function toggleDropdown() {
+      const dropdown = document.getElementById('dropdown');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', function (e) {
+      const dropdown = document.getElementById('dropdown');
+      const profile = document.querySelector('.profile-menu');
+      if (!profile.contains(e.target)) {
+        dropdown.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 
 </html>
